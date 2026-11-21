@@ -256,7 +256,7 @@ export default function App() {
             aria-controls="primary-navigation"
             onClick={() => setMobileMenuOpen((prev) => !prev)}
           >
-            {mobileMenuOpen ? 'Close Menu' : 'Menu'}
+            {mobileMenuOpen ? 'Close' : 'Menu'}
           </button>
 
           <nav
@@ -293,7 +293,7 @@ export default function App() {
             </ul>
             <div className="nav-actions">
               <a className="phone-pill" href={clinic.contact.phoneHref}>
-                {clinic.contact.phone}
+                Call {clinic.contact.phone}
               </a>
               <a
                 className="btn btn-primary btn-sm"
@@ -312,29 +312,37 @@ export default function App() {
           <div className="container hero-grid">
             <div className="hero-content">
               <p className="eyebrow-pill">
+                <span className="eyebrow-dot" aria-hidden="true" />
                 <span>{clinic.doctor.registration}</span>
                 <span aria-hidden="true">•</span>
                 <span>Maijdee, Noakhali</span>
               </p>
 
-              <h1>{clinic.slogan}</h1>
+              <h1>
+                Your Partner in <span className="hero-highlight">Oral Health</span>
+              </h1>
 
               <p className="hero-lead">{clinic.tagline}.</p>
               <p className="hero-body">
-                Compassionate, evidence-based dental care led by{' '}
-                <strong>{clinic.doctor.name}</strong> ({clinic.doctor.degree},{' '}
-                {clinic.doctor.title}) — helping patients across Noakhali protect their natural
-                smiles comfortably.
+                Gentle, modern dentistry led by <strong>{clinic.doctor.name}</strong> (
+                {clinic.doctor.degree}, {clinic.doctor.title}) — helping families across Noakhali
+                preserve healthy, confident natural smiles.
               </p>
 
               <div className="hero-cta-row">
                 <a className="btn btn-primary" href="#book">
-                  Request an Appointment
+                  Book an Appointment
                 </a>
                 <a className="btn btn-secondary" href={clinic.contact.phoneHref}>
                   Call {clinic.contact.phone}
                 </a>
               </div>
+
+              <ul className="hero-chip-row" aria-label="Clinic specialties">
+                <li>Root Canal Specialists</li>
+                <li>Cosmetic Smile Care</li>
+                <li>Diabetic-Safe Protocols</li>
+              </ul>
 
               <div className="doctor-strip">
                 <div>
@@ -355,9 +363,10 @@ export default function App() {
                   height="675"
                   fetchpriority="high"
                 />
+                <span className="hero-photo-tag">Patient-First Dental Suite</span>
               </div>
               <div className="hero-floating-card">
-                <span className="floating-kicker">Focused Dental Care</span>
+                <span className="floating-kicker">Righteous Dental Care</span>
                 <strong>Root Canal, Cosmetic &amp; Preventive Dentistry</strong>
                 <span>{clinic.contact.addressLine1}</span>
               </div>
@@ -400,8 +409,7 @@ export default function App() {
                 <p className="section-kicker">Clinical Treatments</p>
                 <h2 id="services-heading">Comprehensive Dental Care Under One Roof</h2>
                 <p>
-                  Explore our core treatments and select any service to pre-fill your appointment
-                  request.
+                  Filter by treatment area or tap any service to pre-fill your appointment request.
                 </p>
               </div>
 
@@ -442,7 +450,7 @@ export default function App() {
                   <div className="service-card-footer">
                     <button
                       type="button"
-                      className="btn btn-outline btn-sm"
+                      className="btn btn-outline btn-sm btn-full"
                       onClick={() => handleSelectServiceForBooking(service.name)}
                     >
                       Book This Treatment
@@ -450,6 +458,26 @@ export default function App() {
                   </div>
                 </article>
               ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="callout-band" aria-label="Quick appointment assistance">
+          <div className="container callout-card">
+            <div className="callout-copy">
+              <p className="callout-kicker">Direct Clinic Helpline</p>
+              <h2>Need Relief From Tooth Pain or Ready for a Checkup?</h2>
+              <p>
+                Call Righteous Dental directly or submit an online visit request in under a minute.
+              </p>
+            </div>
+            <div className="callout-actions">
+              <a className="btn btn-light" href={clinic.contact.phoneHref}>
+                Call {clinic.contact.phone}
+              </a>
+              <a className="btn btn-light-outline" href="#book">
+                Book Online
+              </a>
             </div>
           </div>
         </section>
@@ -464,6 +492,10 @@ export default function App() {
                 height="683"
                 loading="lazy"
               />
+              <div className="doctor-photo-badge">
+                <strong>{clinic.doctor.degree} • Oral &amp; Dental Surgeon</strong>
+                <span>{clinic.doctor.registration}</span>
+              </div>
             </div>
 
             <div className="doctor-details">
@@ -504,7 +536,7 @@ export default function App() {
                   Schedule Consultation
                 </a>
                 <a className="btn btn-secondary" href={clinic.contact.phoneHref}>
-                  Speak With Clinic
+                  Call {clinic.contact.phone}
                 </a>
               </div>
             </div>
@@ -529,7 +561,7 @@ export default function App() {
               <div className="booking-direct-box">
                 <h3>Prefer calling directly?</h3>
                 <p>
-                  Speak with Righteous Dental directly for urgent toothache or same-day availability.
+                  Speak with Righteous Dental directly for urgent toothache or appointment timing.
                 </p>
                 <a className="direct-phone-link" href={clinic.contact.phoneHref}>
                   {clinic.contact.phone}
@@ -560,6 +592,11 @@ export default function App() {
               noValidate
               onSubmit={handleSubmit}
             >
+              <div className="form-step-banner">
+                <span>Quick 1-Minute Request</span>
+                <span>Selected: {formValues.service}</span>
+              </div>
+
               <div className="field">
                 <label htmlFor="patient-name">
                   Full Name <span aria-hidden="true">*</span>
@@ -605,7 +642,7 @@ export default function App() {
                   aria-describedby={`phone-hint${fieldErrors.phone ? ' phone-error' : ''}`}
                 />
                 <span id="phone-hint" className="field-hint">
-                  Example: +880 17XX-XXXXXX
+                  Example: 01712796829
                 </span>
                 {fieldErrors.phone && (
                   <span id="phone-error" className="field-error">
@@ -804,10 +841,21 @@ export default function App() {
             <p>
               {clinic.doctor.name} • {clinic.doctor.registration} • {clinic.doctor.affiliation}
             </p>
-            <p>{clinic.contact.fullAddress}</p>
+            <p>
+              {clinic.contact.fullAddress} • {clinic.contact.phone}
+            </p>
           </div>
         </div>
       </footer>
+
+      <nav className="mobile-action-bar" aria-label="Quick mobile actions">
+        <a className="btn btn-secondary mobile-action-btn" href={clinic.contact.phoneHref}>
+          Call {clinic.contact.phone}
+        </a>
+        <a className="btn btn-primary mobile-action-btn" href="#book">
+          Book Visit
+        </a>
+      </nav>
 
       <AppointmentModal
         appointment={confirmedAppointment}

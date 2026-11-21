@@ -10,8 +10,8 @@ export const clinicInfo = {
     registration: 'BMDC Reg. No. 3791',
   },
   contact: {
-    phone: '+880712 776829',
-    phoneHref: 'tel:+880712776829',
+    phone: '01712796829',
+    phoneHref: 'tel:+8801712796829',
     addressLine1: 'Nobotomo Bhabon, 901, Central Road',
     addressLine2: 'Lakshminaraynpur, Maijdee, Noakhali',
     fullAddress: 'Nobotomo Bhabon, 901, Central Road, Lakshminaraynpur, Maijdee, Noakhali',
@@ -113,6 +113,6 @@ export const faqs = [
     id: 'booking',
     question: 'How do I confirm or reschedule an appointment?',
     answer:
-      'Submit an appointment request using the booking form on this page or call the clinic directly at +880712 776829. Our front desk will confirm your exact visit slot.',
+      'Submit an appointment request using the booking form on this page or call the clinic directly at 01712796829. Our front desk will confirm your exact visit slot.',
   },
 ];
